@@ -20,7 +20,7 @@ public class MovieRepository : IMovieRepository
 
     public Task<IEnumerable<Movie>> GetAllAsync()
     {
-        return Task.FromResult(_movies.AsEnumerable())
+        return Task.FromResult(_movies.AsEnumerable());
     }
 
     public Task<bool> UpdateAsync(Movie movie)
@@ -28,7 +28,7 @@ public class MovieRepository : IMovieRepository
         var movieIndex = _movies.FindIndex(x => x.Id == movie.Id);
         if (movieIndex == -1)
         {
-            return Task.FromResult(false)
+            return Task.FromResult(false);
         }
 
         _movies[movieIndex] = movie;
