@@ -19,9 +19,10 @@ public class MoviesController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateMovieRequest request)
     {
         var movie = request.MapToMovie();
-        var result = await _movieRepository.CreateAsync(movie);
+        await _movieRepository.CreateAsync(movie);
 
-        return CreatedAtAction(nameof(Get), new { idOrSlug = movie.Id}, movie);
+        var response = movie.MapToResponse();
+        return CreatedAtAction(nameof(Get), new { idOrSlug = movie.Id }, response);
     }
 
     [HttpGet(ApiEndpoints.Movies.Get)]
